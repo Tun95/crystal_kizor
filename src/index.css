@@ -1,0 +1,323 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #14214d;
+    --chalk: #f2f3ef;
+    --ochre: #e0a526;
+    --mist: #dde2f0;
+    --soft: #4a5478;
+    --line: rgba(20, 33, 77, 0.28);
+    --header-h: 68px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--chalk);
+    color: var(--ink);
+    font-family: "Newsreader Variable", Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Familjen Grotesk Variable", system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--ochre);
+    outline-offset: 3px;
+  }
+  .on-ochre :focus-visible,
+  .blk--people:focus-visible {
+    outline-color: var(--ink);
+  }
+
+  section[id],
+  article[id] {
+    scroll-margin-top: calc(var(--header-h) + 12px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Small sentence-case label used for drawing-style annotations */
+  .note {
+    @apply font-display text-[0.9rem] leading-tight text-soft;
+  }
+  .on-dark .note {
+    color: rgba(242, 243, 239, 0.7);
+  }
+
+  .prose-body {
+    @apply max-w-[60ch];
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center rounded-none px-6 font-display text-[1rem] font-semibold transition-colors;
+  }
+  .btn-ink {
+    @apply bg-ink text-chalk hover:bg-[#1f2f6b];
+  }
+  .btn-ochre {
+    @apply bg-ochre text-ink hover:bg-[#ecb53f];
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-current;
+  }
+  .btn-outline:hover {
+    background: rgba(128, 138, 180, 0.16);
+  }
+
+  .link-line {
+    @apply font-display font-medium underline decoration-1 underline-offset-[6px] transition-[text-underline-offset];
+  }
+  .link-line:hover {
+    text-underline-offset: 3px;
+  }
+
+  /* Domain key: the same three fills are used in the map, legend and sections */
+  .key {
+    @apply inline-block h-3 w-3 shrink-0 border-[1.5px] border-ink;
+  }
+  .key--space {
+    background: var(--ink);
+  }
+  .key--knowledge {
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 2px,
+      var(--ink) 2px 3px
+    );
+  }
+  .key--people {
+    background: var(--ochre);
+  }
+
+  /* ── Practice map (elevation drawing) ─────────────────────────────── */
+  .elev {
+    --block-h: 300px;
+  }
+  .elev__row {
+    display: grid;
+    grid-template-columns: var(--cols);
+    column-gap: 18px;
+  }
+  .elev__bay {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: var(--block-h);
+    min-width: 0;
+  }
+  .blk {
+    position: relative;
+    display: flex;
+    flex: var(--w) 1 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
+    min-width: 0;
+    height: var(--bh);
+    padding: 12px;
+    text-align: left;
+    border: 1.5px solid var(--ink);
+    transition:
+      box-shadow 0.18s ease,
+      clip-path 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: 0s, calc(var(--i) * 90ms);
+    clip-path: inset(-8px);
+  }
+  .blk__name {
+    font-family: "Familjen Grotesk Variable", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .blk__tag {
+    font-size: 0.85rem;
+    line-height: 1.25;
+    opacity: 0.85;
+  }
+  .blk--space {
+    background-color: var(--ink);
+    color: var(--chalk);
+    background-image:
+      linear-gradient(rgba(242, 243, 239, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242, 243, 239, 0.12) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: bottom left;
+  }
+  .blk--knowledge {
+    background-color: var(--chalk);
+    color: var(--ink);
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 9px,
+      rgba(20, 33, 77, 0.14) 9px 10px
+    );
+  }
+  .blk--people {
+    background-color: var(--ochre);
+    color: var(--ink);
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent 0 17px,
+      rgba(20, 33, 77, 0.16) 17px 18px
+    );
+  }
+  .blk[data-active="true"],
+  .blk:hover {
+    box-shadow:
+      0 0 0 3px var(--chalk),
+      0 0 0 5px var(--ink);
+  }
+  .elev.is-pending .blk {
+    clip-path: inset(100% -8px -8px -8px);
+  }
+
+  .elev__ground {
+    height: 14px;
+    border-top: 3px solid var(--ink);
+    background-image: repeating-linear-gradient(
+      135deg,
+      var(--ink) 0 1.5px,
+      transparent 1.5px 8px
+    );
+  }
+
+  /* Dimension string: a line with 45° ticks and a label, as on a drawing */
+  .dim {
+    position: relative;
+    margin-top: 22px;
+    border-top: 1px solid var(--ink);
+    text-align: center;
+  }
+  .dim::before,
+  .dim::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    width: 1px;
+    height: 13px;
+    background: var(--ink);
+    transform: rotate(45deg);
+  }
+  .dim::before {
+    left: 0;
+  }
+  .dim::after {
+    right: 0;
+  }
+  .dim > span {
+    position: relative;
+    top: -0.8em;
+    padding: 0 10px;
+    background: var(--bg, var(--chalk));
+    font-family: "Familjen Grotesk Variable", system-ui, sans-serif;
+    font-weight: 500;
+  }
+  .on-dark .dim {
+    border-top-color: var(--chalk);
+  }
+  .on-dark .dim::before,
+  .on-dark .dim::after {
+    background: var(--chalk);
+  }
+
+  /* Title block */
+  .tb {
+    display: grid;
+    border: 1.5px solid var(--ink);
+    min-height: 168px;
+  }
+  .tb__cell {
+    padding: 16px 18px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .tb__cell:last-child {
+    border-bottom: 0;
+  }
+  @media (min-width: 1024px) {
+    .tb {
+      grid-template-columns: 1.1fr 1.7fr 1.3fr 0.9fr;
+    }
+    .tb__cell {
+      border-bottom: 0;
+      border-right: 1.5px solid var(--ink);
+    }
+    .tb__cell:last-child {
+      border-right: 0;
+    }
+  }
+
+  .elev__label-mobile {
+    display: none;
+  }
+
+  /* Mobile: map becomes a stacked list per domain */
+  @media (max-width: 767px) {
+    .elev__row {
+      grid-template-columns: 1fr;
+      row-gap: 28px;
+    }
+    .elev__bay {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+    }
+    .blk {
+      flex: none;
+      height: auto;
+      min-height: 64px;
+    }
+    .elev__ground,
+    .elev__dims-row {
+      display: none;
+    }
+    .elev__label-mobile {
+      display: flex;
+    }
+  }
+
+  /* Placeholder hatch */
+  .ph {
+    background-color: var(--mist);
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 14px,
+      rgba(20, 33, 77, 0.1) 14px 15px
+    );
+  }
+}
