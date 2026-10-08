@@ -18,7 +18,7 @@ const PeopleSection = () => (
         {brandsIn("people").map((b) => (
           <article key={b.id} id={b.id}>
             <ImageSlot
-              name={b.image ?? b.id}
+              name={b.id}
               alt={b.name}
               aspect="aspect-[16/10]"
               label={`${b.name} image.`}
