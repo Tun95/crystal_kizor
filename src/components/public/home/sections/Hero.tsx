@@ -24,10 +24,10 @@ const Hero = () => (
 
       <div className="lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1">
         <ImageSlot
-          name="crystal-portrait"
-          alt="Portrait of Crystal Kizor"
+          name="h1"
+          alt="Crystal Kizor"
           aspect="aspect-[4/5]"
-          label="Portrait of Crystal Kizor."
+          label="Hero image."
           priority
         />
       </div>
