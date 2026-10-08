@@ -92,6 +92,7 @@ export const brands: Brand[] = [
   {
     id: "ako-alliance",
     name: "AKO Alliance",
+    image: "s1",
     domain: "people",
     tagline: "Access to education",
     summary:
@@ -104,6 +105,7 @@ export const brands: Brand[] = [
   {
     id: "alive-and-free",
     name: "Alive and Free",
+    image: "s2",
     domain: "people",
     tagline: "A Christian youth movement",
     summary:
@@ -128,7 +130,8 @@ export const enquiryOptions: EnquiryOption[] = [
   {
     id: "studio-coka",
     label: "A building or interior",
-    placeholder: "Tell us about the site, the brief and when you hope to start.",
+    placeholder:
+      "Tell us about the site, the brief and when you hope to start.",
   },
   {
     id: "elevated",
@@ -143,7 +146,8 @@ export const enquiryOptions: EnquiryOption[] = [
   {
     id: "speaking",
     label: "A speaking engagement",
-    placeholder: "Event name, date, audience size and the topic you have in mind.",
+    placeholder:
+      "Event name, date, audience size and the topic you have in mind.",
   },
   {
     id: "writing",
@@ -158,7 +162,8 @@ export const enquiryOptions: EnquiryOption[] = [
   {
     id: "alive-and-free",
     label: "Youth and church",
-    placeholder: "Tell us about your group or church, and what you are looking for.",
+    placeholder:
+      "Tell us about your group or church, and what you are looking for.",
   },
 ];
 

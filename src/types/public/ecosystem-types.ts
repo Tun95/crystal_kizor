@@ -19,6 +19,7 @@ export interface Domain {
 export interface Brand {
   id: BrandId;
   name: string;
+  image?: string;
   domain: DomainId;
   /** Short descriptor shown inside the practice map */
   tagline: string;

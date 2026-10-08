@@ -23,7 +23,7 @@ const SpaceSection = () => {
         <div className="mt-16 grid gap-14 md:grid-cols-12 md:gap-10">
           <article id={coka.id} className="md:col-span-7">
             <ImageSlot
-              name="studio-coka"
+              name="e1"
               alt="A Studio COKA project"
               aspect="aspect-[4/3]"
               label="Studio COKA project image."
@@ -41,7 +41,7 @@ const SpaceSection = () => {
 
           <article id={elevated.id} className="md:col-span-5 md:mt-28">
             <ImageSlot
-              name="elevated"
+              name="e2"
               alt="An ELEvated furniture piece"
               aspect="aspect-[3/4]"
               label="ELEvated product image."
